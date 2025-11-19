@@ -1,5 +1,5 @@
 {
-  "name": "growi-plugin-pdf-viewer",
+  "name": "growi-plugin-pdf-viewer-j",
   "version": "1.0.0",
   "description": "GROWI plugin for viewing PDF",
   "license": "MIT",
@@ -18,12 +18,15 @@
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
     "react-innertext": "^1.1.5",
-    "ts-pdf": "^0.11.4"
+    "ts-pdf": "^0.11.4",
+    "unified": "^11.0.5",
+    "unist-util-visit": "^5.0.0"
   },
   "devDependencies": {
     "@types/crypto-js": "^4.2.2",
     "@types/react": "^18.3.3",
     "@types/react-dom": "^18.3.0",
+    "@types/unist": "^3.0.3",
     "@typescript-eslint/eslint-plugin": "^5.0.0",
     "@typescript-eslint/parser": "^5.0.0",
     "@vitejs/plugin-react": "^4.3.1",

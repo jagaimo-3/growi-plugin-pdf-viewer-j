@@ -1,7 +1,14 @@
 import sha256 from 'crypto-js/sha256';
 import { TsPdfViewer, TsPdfViewerOptions } from 'ts-pdf';
 import type { Plugin } from 'unified';
+import type { Node } from 'unist';
 import { visit } from 'unist-util-visit';
+
+type PdfViewerOptionsWithCMap = TsPdfViewerOptions & {
+  cMapUrl: string;
+  cMapPacked: boolean;
+  standardFontDataUrl: string;
+};
 
 interface GrowiNode extends Node {
   name: string;
@@ -21,9 +28,12 @@ export const plugin: Plugin = function() {
           const { width, height } = n.attributes;
           const key = sha256(filePath);
           const containerSelector = `#pdf-${key}`;
-          const options: TsPdfViewerOptions = {
+          const options: PdfViewerOptionsWithCMap = {
             containerSelector,
             workerSource: 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.16.105/pdf.worker.min.js',
+            cMapUrl: 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.16.105/cmaps/',
+            cMapPacked: true,
+            standardFontDataUrl: 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.16.105/standard_fonts/',
           };
           n.type = 'html';
           n.value = `<div id="pdf-${key}" style="width: ${width}; height: ${height};"></div>`;
